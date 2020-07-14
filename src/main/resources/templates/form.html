@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${titulo}"></title>
+</head>
+<body>
+    <h3 th:text="${titulo}"></h3>
+    <form th:action="@{/form}" th:object="${user}" method="post"><!--@ModelAttribute("user") nos ayuda a darle un nickname a la clase-->
+        <div>
+            <label for="identificador">Identificador</label>
+            <div><input type="text" id="identificador" th:field="*{identificador}">
+            </div>
+                <div th:if="${#fields.hasErrors('identificador')}" th:errors="*{identificador}"></div>
+        </div>
+        <div>
+            <label for="nombre">Nombre</label>
+            <div><input type="text" id="nombre" th:field="*{nombre}">
+            </div>
+                <div th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
+        </div>
+        <div>
+            <label for="apellido">Apellido</label>
+            <div><input type="text" id="apellido" th:field="*{apellido}">
+            </div>
+                <div th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"></div>
+        </div>
+        <div>
+            <label for="username">Username</label> <!-- for: para que enfoque en el input, debe ser igual al id-->
+            <div>
+                <!--<input type="text" name="username" id="username" th:value="${usuario?.username}"> th:value se pasa el nombre de la clase Usuario pero en minuscula para th-->
+                <input type="text" id="username" th:field="*{username}"> <!--con el th:object no necesitamos invocar el objeto aqui (user)-->
+            </div>
+<!--            <div th:if="${error != null && error.containsKey('username')}" th:text="${error.username}"></div> Se usa con el Map del controller-->
+                <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+        </div>
+        <div>
+            <label for="password">Password</label>
+            <div>
+                <input type="password" name="password" id="password"> <!-- por seguridad no se debe poner th:value aqui-->
+            </div>
+            <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+        </div>
+        <div>
+            <label for="email">email</label>
+            <div>
+<!--                <input type="email" name="email" id="email">Validación por el lado del cliente-->
+                <input type="text" name="email" id="email" th:value="${user?.email}"> <!--Forma larga de hacer lo mismo que con el username-->
+            </div>
+            <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+        </div>
+        <div>
+            <div>
+                <input type="submit" value="Enviar">
+            </div>
+        </div>
+    </form>
+</body>
+</html>
