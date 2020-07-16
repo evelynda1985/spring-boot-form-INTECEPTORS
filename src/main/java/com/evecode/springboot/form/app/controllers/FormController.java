@@ -3,6 +3,7 @@ package com.evecode.springboot.form.app.controllers;
 import com.evecode.springboot.form.app.models.domain.Usuario;
 import com.evecode.springboot.form.app.validation.UsuarioValidador;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 
 import javax.validation.Valid;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,7 +27,12 @@ public class FormController {
     //Ventajas es que desacopla el validador del metodo handler
     @InitBinder
     public void initBinder(WebDataBinder binder){
+
         binder.addValidators(validador);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        dateFormat.setLenient(false);
+        //fechaNacimiento abajo indica que este es especificamente para ese campo del pojo
+        binder.registerCustomEditor(Date.class, "fechaNacimiento", new CustomDateEditor(dateFormat, true));
     }
 
     @GetMapping("/form")

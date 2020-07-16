@@ -4,8 +4,10 @@ import com.evecode.springboot.form.app.validation.IdentificadorRegex;
 import com.evecode.springboot.form.app.validation.Requerido;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.*;
+import java.util.Date;
 
 public class Usuario {
 
@@ -36,5 +38,11 @@ public class Usuario {
     @Min(5)
     @Max(5000)
     @Getter @Setter private Integer cuenta;
+
+    @NotNull
+    //@DateTimeFormat(pattern = "yyyy-MM-dd")
+    //@Past
+    @Future
+    @Getter @Setter private Date fechaNacimiento;
 
 }
