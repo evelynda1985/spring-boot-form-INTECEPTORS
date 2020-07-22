@@ -6,8 +6,10 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.util.Date;
+import java.util.List;
 
 public class Usuario {
 
@@ -41,8 +43,16 @@ public class Usuario {
 
     @NotNull
     //@DateTimeFormat(pattern = "yyyy-MM-dd")
-    //@Past
-    @Future
+    @Past
+//    @Future
     @Getter @Setter private Date fechaNacimiento;
+
+//    @Valid
+    @NotNull
+    @Getter @Setter private Pais pais;
+
+    @NotEmpty
+//    @Getter @Setter private List<String> roles;
+    @Getter @Setter private List<Role> roles;
 
 }

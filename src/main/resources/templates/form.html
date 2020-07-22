@@ -8,11 +8,79 @@
 <body>
     <h3 th:text="${titulo}"></h3>
     <form th:action="@{/form}" th:object="${user}" method="post"><!--@ModelAttribute("user") nos ayuda a darle un nickname a la clase-->
+<!--        <div>-->
+<!--            <label for="pais">Pais</label>-->
+<!--            <div>-->
+<!--                <select id="pais" th:field="*{pais}">-->
+<!--                    <option value="">&#45;&#45;Seleccionar&#45;&#45;</option>-->
+<!--                    <option th:each="pais: ${paises}" th:text="${pais}" th:value="${pais}"></option>-->
+<!--                </select>-->
+<!--            </div>-->
+<!--            <div th:if="${#fields.hasErrors('pais')}" th:errors="*{pais}"></div>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <label for="pais">Pais</label>-->
+<!--            <div>-->
+<!--                <select id="pais" th:field="*{pais}">-->
+<!--                    <option value="">&#45;&#45;Seleccionar&#45;&#45;</option>-->
+<!--                    <option th:each="pais: ${paisesMap.entrySet()}" th:text="${pais.value}" th:value="${pais.key}"></option>-->
+<!--                </select>-->
+<!--            </div>-->
+<!--            <div th:if="${#fields.hasErrors('pais')}" th:errors="*{pais}"></div>-->
+<!--        </div>        -->
+<!--        <div>-->
+<!--            <label for="pais">Pais</label>-->
+<!--            <div>-->
+<!--                <select id="pais" th:field="*{pais.id}">-->
+<!--                    <option value="">&#45;&#45;Seleccionar&#45;&#45;</option>-->
+<!--                    <option th:each="pais: ${listaPaises}" th:text="${pais.nombre}" th:value="${pais.id}"></option>-->
+<!--                </select>-->
+<!--            </div>-->
+<!--            <div th:if="${#fields.hasErrors('pais.id')}" th:errors="*{pais.id}"></div>-->
+<!--        </div>        -->
+
+        <!--  Usando paisPropertyEditor      -->
+        <div>
+            <label for="pais">Pais</label>
+            <div>
+                <select id="pais" th:field="*{pais}">
+                    <option value="">--Seleccionar--</option>
+                    <option th:each="pais: ${listaPaises}" th:text="${pais.nombre}" th:value="${pais.id}"></option>
+                </select>
+            </div>
+            <div th:if="${#fields.hasErrors('pais')}" th:errors="*{pais}"></div>
+        </div>
         <div>
             <label for="identificador">Identificador</label>
             <div><input type="text" id="identificador" th:field="*{identificador}">
             </div>
                 <div th:if="${#fields.hasErrors('identificador')}" th:errors="*{identificador}"></div>
+        </div>
+<!--        <div>-->
+<!--            <label>Roles</label>-->
+<!--            <div th:each="role: ${listaRolesString}">-->
+<!--                <input type="checkbox" th:field="*{roles}" th:value="${role}">-->
+<!--                <label th:for="${#ids.prev('roles')}" th:text="${role}"></label>-->
+<!--            </div>-->
+<!--                <div th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}"></div>-->
+<!--        </div>-->
+
+<!--   Usando Map     -->
+<!--        <div>-->
+<!--            <label>Roles</label>-->
+<!--            <div th:each="role: ${listaRolesMap.entrySet()}">-->
+<!--                <input type="checkbox" th:field="*{roles}" th:value="${role.key}">-->
+<!--                <label th:for="${#ids.prev('roles')}" th:text="${role.value}"></label>-->
+<!--            </div>-->
+<!--                <div th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}"></div>-->
+<!--        </div> -->
+        <div>
+            <label>Roles</label>
+            <div th:each="role: ${listaRolesObjecto}">
+                <input type="checkbox" th:field="*{roles}" th:value="${role.id}">
+                <label th:for="${#ids.prev('roles')}" th:text="${role.nombre}"></label>
+            </div>
+                <div th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}"></div>
         </div>
         <div>
             <label for="nombre">Nombre</label>
