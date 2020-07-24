@@ -4,6 +4,8 @@ package com.evecode.springboot.form.app.models.domain;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Objects;
+
 public class Role {
 
     @Getter @Setter
@@ -23,4 +25,19 @@ public class Role {
         this.nombre = nombre;
         this.role = role;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if(this == o){
+            return true;
+        }
+
+        if(!(o instanceof Role)){
+            return false;
+        }
+
+        Role role = (Role) o;
+        return this.id != null && this.id.equals(role.getId());
+    }
+
 }

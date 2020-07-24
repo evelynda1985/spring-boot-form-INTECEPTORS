@@ -55,4 +55,13 @@ public class Usuario {
 //    @Getter @Setter private List<String> roles;
     @Getter @Setter private List<Role> roles;
 
+    @Getter @Setter private Boolean habilitar;
+
+    @NotEmpty
+    @Getter @Setter private String genero;
+
+    @Getter @Setter private String valorSecreto;
+
+
+
 }
