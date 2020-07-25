@@ -6,9 +6,12 @@
     <title th:text="${titulo}"></title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
           integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-<!--    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" >-->para trabajar con bootstrap localmente
+<!--    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" > para trabajar con bootstrap localmente-->
 </head>
 <body>
+
+<section th:replace="componentes/tiempo :: inteceptor"></section>
+
     <div class="container">
         <a th:href="@{/form}" class="btn btn-success my-3">Volver</a>
     <ul class="list-group my-2">
